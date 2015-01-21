@@ -1,0 +1,4 @@
+<ul class="nav">
+    {{#foreach nav}}
+    <li class="nav-{{labelSlug}} {{#if current}}nav-current{{/if}}"><a href="{{navUrl}}">{{label}}</a></li> {{/foreach}}
+</ul>
