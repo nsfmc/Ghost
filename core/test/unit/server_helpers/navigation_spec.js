@@ -67,4 +67,21 @@ describe('{{navigation}} helper', function () {
         rendered.string.should.containEql('href="/foo"');
         rendered.string.should.containEql('href="/qux"');
     });
+
+    it('can annotate the current url', function () {
+        var firstItem = {label: 'Foo', url: '/foo'},
+            secondItem = {label: 'Bar', url: '/qux'},
+            navigation = {
+                relativeUrl: '/foo',
+                nav: [firstItem, secondItem]
+            },
+            rendered = helpers.navigation.call(navigation);
+
+        should.exist(rendered);
+        rendered.string.should.containEql('nav-foo');
+        rendered.string.should.containEql('nav-current');
+        rendered.string.should.containEql('nav-foo nav-current');
+        rendered.string.should.containEql('nav-bar "');
+    });
+
 });

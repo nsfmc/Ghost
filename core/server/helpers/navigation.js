@@ -10,7 +10,8 @@ var _               = require('lodash'),
 navigation = function (options) {
     /*jshint unused:false*/
     var nav,
-        context;
+        context,
+        currentUrl = this.relativeUrl;
 
     if (!_.isObject(this.nav) || _.isFunction(this.nav)) {
         return errors.logAndThrowError('navigation data is not an object or is a function');
@@ -39,6 +40,7 @@ navigation = function (options) {
         out.labelSlug = _slugify(e.label);
         out.navUrl = e.url;
         out.label = e.label;
+        out.current = e.url === currentUrl;
         return out;
     });
 
